@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--site-bg: #05060a;
+	--site-card: #0d1114;
+	--site-border: #1f2933;
+	--muted: #e5e7eb; /* brighter body text */
+	--accent: #65a30d; /* darker lime green */
+	--accent-2: #7c3aed; /* purple alternative */
+}
+
+/* Dark theme defaults */
+body { background-color: var(--site-bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; color: #ffffff; min-height:100vh; font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial }
+.site-card { background-color: var(--site-card); }
+.nav-bg { background-color: rgba(13,17,20,0.95); }
+.site-card { border-left: 4px solid rgba(255,255,255,0.02); }
+.site-card:hover { border-left-color: var(--accent); }
+
+/* Nav link underline animation */
+.nav-link { position: relative; display: inline-block; padding-bottom: 2px; transition: color .18s ease }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--accent); transition: width .22s ease }
+.nav-link:hover::after { width: 100% }
+/* remove default underline for nav tabs */
+.nav-link { text-decoration: none }
+
+/* Button transitions and subtle lift */
+.btn-accent { background-color: var(--accent); color: white; transition: transform .12s ease, box-shadow .12s ease, filter .12s ease }
+.btn-accent:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.45) }
+/* ensure accent buttons (including repo anchors) don't show underline */
+.btn-accent { text-decoration: none }
+.btn-accent:link, .btn-accent:visited { text-decoration: none }
+
+/* Accent text utility */
+.accent-text { color: var(--accent); font-weight:600 }
+
+/* Page & card animations */
+.page-animate { opacity: 0; transform: translateY(6px); animation: pageFadeIn .48s cubic-bezier(.2,.9,.2,1) forwards }
+.card-animate { opacity: 0; transform: translateY(10px) scale(.995); animation: cardPop .36s cubic-bezier(.22,.9,.35,1) forwards }
+
+@keyframes pageFadeIn { to { opacity: 1; transform: none } }
+@keyframes cardPop { to { opacity: 1; transform: translateY(0) scale(1) } }
+
+/* small utility for staggered lists (used in future) */
+.stagger-child { opacity: 0; transform: translateY(6px); }
+.stagger-child[data-visible='true'] { animation: childFade .36s ease forwards }
+@keyframes childFade { to { opacity:1; transform:none } }
+
+/* Modal transitions */
+.modal-overlay { background-color: rgba(0,0,0,0); animation: overlayFade .16s ease forwards }
+.modal-body { transform: translateY(6px) scale(.995); opacity: 0; animation: modalPop .18s cubic-bezier(.2,.9,.2,1) forwards; box-shadow: 0 10px 40px rgba(2,6,23,0.6) }
+.modal-close { transition: transform .12s ease, color .12s ease }
+.modal-close:hover { transform: rotate(-6deg) scale(1.02) }
+
+@keyframes overlayFade { from { background-color: rgba(0,0,0,0) } to { background-color: rgba(0,0,0,0.6) } }
+@keyframes modalPop { to { transform: none; opacity: 1 } }
+
+/* Media transitions */
+.media-img { display:block; width:100%; height:auto; max-height:56vh; object-fit:contain; background:#000; opacity:0; transform:translateY(6px); animation: imgFade .28s ease forwards }
+@keyframes imgFade { to { opacity:1; transform:none } }
+.media-iframe { width:100%; height:100%; transition: opacity .18s ease }
+
+/* SVG icon micro-animations */
+.icon-anim { transition: transform .18s ease, fill .18s ease }
+.icon-anim:hover { transform: translateY(-3px) scale(1.06) }
+.icon-pulse { animation: pulse 2.4s ease-in-out infinite; transform-origin: center }
+.icon-wiggle:hover { animation: wiggle .6s ease-in-out }
+
+@keyframes pulse { 0% { transform: scale(1) } 50% { transform: scale(1.03) } 100% { transform: scale(1) } }
+@keyframes wiggle { 0% { transform: rotate(0deg) } 25% { transform: rotate(-6deg) } 50% { transform: rotate(6deg) } 75% { transform: rotate(-3deg) } 100% { transform: rotate(0deg) } }
+
+/* Utility to defer loading visual until content is ready */
+.deferred-hidden { opacity: 0; pointer-events: none }
+.deferred-visible { opacity: 1; pointer-events: auto; transition: opacity .18s ease }
+
+
+/* Site card and nav */
+.site-card { background-color: var(--site-card); }
+.nav-bg { background-color: rgba(13,17,20,0.95); }
+
+/* Text utilities */
+.text-muted { color: var(--muted); }
+.accent-text { color: var(--accent); }
+
+/* Buttons */
+.btn-accent { background-color: var(--accent); color: white; }
+.btn-accent:hover { filter:brightness(0.95) }
+
+/* Inputs */
+input, textarea { background-color: var(--site-card); border: 1px solid var(--site-border); color: white }
+
+/* Links */
+a { color: var(--accent); text-decoration: underline }
+
+/* Utility overrides for components using Tailwind gray classes */
+.bg-gray-800 { background-color: var(--site-card) !important }
+.text-gray-100 { color: #ffffff !important }
+.text-gray-300 { color: var(--muted) !important }

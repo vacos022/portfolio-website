@@ -1,0 +1,36 @@
+node_modules/
+
+# Vite build output
+dist/
+.vite/
+
+# Local env files
+.env
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Coverage / caches
+coverage/
+.nyc_output/
+.cache/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Misc
+*.local
